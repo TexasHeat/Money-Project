@@ -7,11 +7,13 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 import java.awt.Color;
 
 public class Main {
 
 	private JFrame frame;
+	private Connection con;
 
 	/**
 	 * Launch the application.
@@ -31,15 +33,30 @@ public class Main {
 
 	/**
 	 * Create the application.
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public Main() {
+	public Main() throws ClassNotFoundException, SQLException {
 		initialize();
 	}
-
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+private void initialize() throws SQLException, ClassNotFoundException  {
+		/*
+		// Define connection
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://34.72.116.206:3306/moneyproject", "newuser", "Rootpassword!");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("Connection Failed");
+			e1.printStackTrace();
+		}
+		*/
+	
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.GREEN);
 		frame.getContentPane().setForeground(Color.WHITE);
@@ -48,7 +65,8 @@ public class Main {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBackground(Color.BLACK);
+		btnLogin.setForeground(Color.BLACK);
+		btnLogin.setBackground(Color.WHITE);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("This button will take you to the login screen!");
@@ -60,7 +78,8 @@ public class Main {
 		frame.getContentPane().add(btnLogin);
 		
 		JButton btnRegister = new JButton("Register");
-		btnRegister.setBackground(Color.BLACK);
+		btnRegister.setForeground(Color.BLACK);
+		btnRegister.setBackground(Color.WHITE);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("This button will take you to the register screen!");
