@@ -55,6 +55,16 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 			System.out.println("Connection Failed");
 			e1.printStackTrace();
 		}
+		
+		
+		try {
+			Statement st = con.createStatement();
+			String query = "SELECT * FROM employees";
+			ResultSet rs = st.executeQuery(query);
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		*/
 	
 		frame = new JFrame();
@@ -83,8 +93,15 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("This button will take you to the register screen!");
-				Register user = new Register();
-				user.NewProfile();
+				Register user;
+				try {
+					user = new Register();
+					user.NewProfile();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnRegister.setBounds(183, 83, 114, 37);
