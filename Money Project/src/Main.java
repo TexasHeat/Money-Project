@@ -45,7 +45,7 @@ public class Main {
 	 * Initialize the contents of the frame.
 	 */
 private void initialize() throws SQLException, ClassNotFoundException  {
-		/*
+		
 		// Define connection
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		try {
@@ -56,22 +56,21 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 			e1.printStackTrace();
 		}
 		
-		
 		try {
 			Statement st = con.createStatement();
-			String query = "SELECT * FROM employees";
+			String query = "SELECT * FROM usermoney";
 			ResultSet rs = st.executeQuery(query);
 			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		*/
+		
 	
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.GREEN);
 		frame.getContentPane().setForeground(Color.WHITE);
 		frame.setBounds(100, 100, 350, 200);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnLogin = new JButton("Login");

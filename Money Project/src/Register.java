@@ -66,7 +66,7 @@ public class Register {
 	 * @throws ClassNotFoundException 
 	 */
 	private void initialize() throws ClassNotFoundException {
-		/*
+		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://34.72.116.206:3306/moneyproject", "newuser", "Rootpassword!");
@@ -75,13 +75,12 @@ public class Register {
 			System.out.println("Connection Failed");
 			e1.printStackTrace();
 		}
-		*/		
-		
+			
 		frmRegisterNewUser = new JFrame();
 		frmRegisterNewUser.setFont(new Font("Dialog", Font.BOLD, 12));
 		frmRegisterNewUser.setTitle("Register New User");
 		frmRegisterNewUser.setBounds(100, 100, 532, 685);
-		frmRegisterNewUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmRegisterNewUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmRegisterNewUser.getContentPane().setLayout(null);
 		
 		JTextArea txtrThisScreenWill = new JTextArea();
@@ -120,6 +119,7 @@ public class Register {
 		phonetextField.setBounds(263, 76, 86, 20);
 		frmRegisterNewUser.getContentPane().add(phonetextField);
 		phonetextField.setColumns(10);
+		
 		/*
 		JButton saveBasicButton = new JButton("Save");
 		saveBasicButton.addActionListener(new ActionListener() {
@@ -215,19 +215,21 @@ public class Register {
 		frmRegisterNewUser.getContentPane().add(passwordtextField_2);
 		
 		JButton saveUserButton = new JButton("Save");
-		/*public void actionPerformed(ActionEvent e) {
-			if (!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")) {
-				try {
-					Statement st = con.createStatement();
-					String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+userMoney+"', '"+userTracker+"')";
-					st.executeUpdate(query);
-											
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+		saveUserButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")) {
+					try {
+						Statement st = con.createStatement();
+						String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+userMoney+"', '"+userTracker+"')";
+						st.executeUpdate(query);
+												
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
-		}*/
+		});
 		saveUserButton.setBounds(10, 600, 89, 23);
 		frmRegisterNewUser.getContentPane().add(saveUserButton);		
 	}
