@@ -78,7 +78,6 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 		btnLogin.setBackground(Color.WHITE);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("This button will take you to the login screen!");
 				Profile user = new Profile();
 				user.ExistingProfile();
 			}
@@ -91,7 +90,6 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 		btnRegister.setBackground(Color.WHITE);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("This button will take you to the register screen!");
 				Register user;
 				try {
 					user = new Register();

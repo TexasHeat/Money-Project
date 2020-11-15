@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.*;
 
 import javax.swing.JButton;
 import javax.swing.JTextPane;
@@ -23,16 +24,21 @@ import javax.swing.JPasswordField;
 public class Register {
 
 	private JFrame frmRegisterNewUser;
+	private JFrame frame;
 	private JTextField lntextField;
 	private JTextField fntextField;
 	private JTextField phonetextField;
 	private JTextField usernametextField;
 	private JTextField passwordtextField;
 	private JTextField passwordtextField_2;
+	private JTextField monthlyExptextField;
+	private JTextField FrequencytextField;
+	private JTextField downPaymenttextField;
 	private Connection con;
 
-	private int userID = 0, userChoice = 0, userTracker = 0;
-	private double userMoney = 0.00;
+	private long userID;
+	private int userChoice = 0, userTracker = 0;
+	
 	
 	/**
 	 * Launch the application.
@@ -65,7 +71,17 @@ public class Register {
 	 * Initialize the contents of the frame.
 	 * @throws ClassNotFoundException 
 	 */
+	
+	private static long rand() {
+	    Random random=new Random();
+	    long randNum = (long)(random.nextDouble()*1000000000L);
+	    
+	    return randNum;
+	}
+	
 	private void initialize() throws ClassNotFoundException {
+		
+		userID = rand();
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		try {
@@ -119,67 +135,61 @@ public class Register {
 		phonetextField.setBounds(263, 76, 86, 20);
 		frmRegisterNewUser.getContentPane().add(phonetextField);
 		phonetextField.setColumns(10);
-		
-		/*
-		JButton saveBasicButton = new JButton("Save");
-		saveBasicButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				if () {
-					try {
-						Statement st = con.createStatement();
-						String query = "UPDATE usermoney SET firstName = '"+ fntextField.getText() +"' WHERE eid = "+ eidtextField.getText() +"";
-						st.executeUpdate(query);
-						
-						JOptionPane.showMessageDialog(frame,
-							    "Saved Basic Info.");
-
-						
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-				}
-		saveBasicButton.setBounds(10, 107, 89, 23);
-		frmRegisterNewUser.getContentPane().add(saveBasicButton);
-		*/
 						
 		JTextArea txtrWhyYouWant = new JTextArea();
 		txtrWhyYouWant.setText("Why you want to save and how often you want to save.");
 		txtrWhyYouWant.setLineWrap(true);
-		txtrWhyYouWant.setBounds(10, 174, 496, 29);
+		txtrWhyYouWant.setBounds(10, 115, 496, 29);
 		frmRegisterNewUser.getContentPane().add(txtrWhyYouWant);
 				
 		JTextArea txtrThisShouldBe = new JTextArea();
 		txtrThisShouldBe.setText("This should equal 3 months worth of your total spending. This is used in the case of an emergency or job loss.");
 		txtrThisShouldBe.setLineWrap(true);
-		txtrThisShouldBe.setBounds(10, 260, 166, 119);
+		txtrThisShouldBe.setBounds(10, 181, 166, 119);
 		frmRegisterNewUser.getContentPane().add(txtrThisShouldBe);
 			
 		JTextArea txtrThisShouldEqual = new JTextArea();
 		txtrThisShouldEqual.setText("This should equal a down payment on a car/house. It is common to have to make a down payment before purchasing.");
 		txtrThisShouldEqual.setLineWrap(true);
-		txtrThisShouldEqual.setBounds(183, 260, 166, 119);
+		txtrThisShouldEqual.setBounds(263, 181, 166, 119);
 		frmRegisterNewUser.getContentPane().add(txtrThisShouldEqual);
 		
-		JLabel lblNewLabel_4 = new JLabel("Reason for Saving?");
-		lblNewLabel_4.setBounds(10, 214, 110, 14);
-		frmRegisterNewUser.getContentPane().add(lblNewLabel_4);
-		
 		JCheckBox bpCheckBox = new JCheckBox("Big Purchase");
-		bpCheckBox.setBounds(183, 230, 166, 23);
+		bpCheckBox.setBounds(263, 151, 166, 23);
 		frmRegisterNewUser.getContentPane().add(bpCheckBox);
 		
 		JCheckBox esCheckBox = new JCheckBox("Emergency Savings");
-		esCheckBox.setBounds(10, 230, 166, 23);
+		esCheckBox.setBounds(10, 151, 166, 23);
 		frmRegisterNewUser.getContentPane().add(esCheckBox);
 		
-		/*
-		JButton saveReasonButton = new JButton("Save");
-		saveReasonButton.setBounds(10, 390, 89, 23);
-		frmRegisterNewUser.getContentPane().add(saveReasonButton);
-		*/
+		monthlyExptextField = new JTextField();
+		monthlyExptextField.setHorizontalAlignment(SwingConstants.CENTER);
+		monthlyExptextField.setBounds(10, 341, 166, 20);
+		frmRegisterNewUser.getContentPane().add(monthlyExptextField);
+		monthlyExptextField.setColumns(10);
+		
+		downPaymenttextField = new JTextField();
+		downPaymenttextField.setHorizontalAlignment(SwingConstants.CENTER);
+		downPaymenttextField.setColumns(10);
+		downPaymenttextField.setBounds(263, 341, 166, 20);
+		frmRegisterNewUser.getContentPane().add(downPaymenttextField);
+		
+		JLabel lblNewLabel_7 = new JLabel("Down Payment");
+		lblNewLabel_7.setBounds(263, 316, 86, 14);
+		frmRegisterNewUser.getContentPane().add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_4 = new JLabel("Monthly Expenses");
+		lblNewLabel_4.setBounds(10, 316, 134, 14);
+		frmRegisterNewUser.getContentPane().add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_6 = new JLabel("Frequency (weekly, monthly)");
+		lblNewLabel_6.setBounds(10, 384, 152, 14);
+		frmRegisterNewUser.getContentPane().add(lblNewLabel_6);
+		
+		FrequencytextField = new JTextField();
+		FrequencytextField.setBounds(10, 409, 166, 20);
+		frmRegisterNewUser.getContentPane().add(FrequencytextField);
+		FrequencytextField.setColumns(10);
 		
 		JTextArea txtrUserLogin = new JTextArea();
 		txtrUserLogin.setText("Why you want to save and how often you want to save.");
@@ -217,22 +227,46 @@ public class Register {
 		JButton saveUserButton = new JButton("Save");
 		saveUserButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")) {
-					try {
-						Statement st = con.createStatement();
-						String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+userMoney+"', '"+userTracker+"')";
-						st.executeUpdate(query);
-												
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				if(esCheckBox.isSelected() && !bpCheckBox.isSelected()) {
+					if(!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")&& !monthlyExptextField.getText().equals("")) {
+						try {
+							Statement st = con.createStatement();
+							String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+monthlyExptextField.getText()+"', '"+userTracker+"')";
+							st.executeUpdate(query);
+													
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				}
+				
+				
+				else if(bpCheckBox.isSelected() && !esCheckBox.isSelected()) {
+					if (!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")&& !downPaymenttextField.getText().equals("")) {
+						try {
+							Statement st = con.createStatement();
+							String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+downPaymenttextField.getText()+"', '"+userTracker+"')";
+							st.executeUpdate(query);
+													
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+				
+				else {
+					JOptionPane.showMessageDialog(frame,
+						    "Please Select Monthly Expenses or Big Purchases (Not Both!)");
+				}
+					
+				
 			}
 		});
 		saveUserButton.setBounds(10, 600, 89, 23);
 		frmRegisterNewUser.getContentPane().add(saveUserButton);		
+				
 	}
-		
 }
 	
