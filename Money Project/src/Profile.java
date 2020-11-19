@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class Profile {
 
@@ -94,11 +95,11 @@ public class Profile {
 		frame.getContentPane().add(textField_5);
 		
 		JLabel lblNewLabel_1 = new JLabel("Name");
-		lblNewLabel_1.setBounds(68, 74, 47, 14);
+		lblNewLabel_1.setBounds(76, 74, 47, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Last Name");
-		lblNewLabel_1_1.setBounds(190, 74, 71, 14);
+		lblNewLabel_1_1.setBounds(190, 65, 71, 14);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Phone Number");
@@ -117,5 +118,4 @@ public class Profile {
 		lblNewLabel_1_5.setBounds(76, 122, 80, 14);
 		frame.getContentPane().add(lblNewLabel_1_5);
 	}
-
 }

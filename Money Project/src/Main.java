@@ -78,8 +78,14 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 		btnLogin.setBackground(Color.WHITE);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Profile user = new Profile();
-				user.ExistingProfile();
+				Login user;
+				try {
+					user = new Login();
+					user.newLogin();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnLogin.setBounds(38, 83, 114, 37);

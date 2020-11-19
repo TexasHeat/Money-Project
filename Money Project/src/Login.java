@@ -20,7 +20,7 @@ public class Login {
 	/**
 	 * Launch the application.
 	 */
-	public static void newLogin() {
+	public void newLogin() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -65,7 +65,7 @@ public class Login {
 		}
 		frame = new JFrame();
 		frame.setBounds(100, 100, 452, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		loginUserNameTextfield = new JTextField();
@@ -110,9 +110,9 @@ public class Login {
 							if(loginUserNameTextfield.getText().equals(userName) && loginPasswordTextfield.getText().equals(password)) {
 								System.out.println("Successful login");
 								JOptionPane.showMessageDialog(null, "Successful login!");
-								//Profile profile1;
-								//profile1 = new Profile();
-								Profile.ExistingProfile();
+								
+								Profile user = new Profile();
+								user.ExistingProfile();
 								break;
 							}
 
@@ -141,6 +141,8 @@ public class Login {
 					System.out.println("Cannot have fields empty");
 				}
 			}
+			
+			
 		});
 		loginBtn.setBounds(171, 228, 98, 34);
 		frame.getContentPane().add(loginBtn);
