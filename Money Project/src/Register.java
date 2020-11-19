@@ -142,13 +142,13 @@ public class Register {
 		JTextArea txtrThisShouldBe = new JTextArea();
 		txtrThisShouldBe.setText("This should equal 3 months worth of your total spending. This is used in the case of an emergency or job loss.");
 		txtrThisShouldBe.setLineWrap(true);
-		txtrThisShouldBe.setBounds(10, 233, 166, 119);
+		txtrThisShouldBe.setBounds(10, 233, 224, 119);
 		frmRegisterNewUser.getContentPane().add(txtrThisShouldBe);
 			
 		JTextArea txtrThisShouldEqual = new JTextArea();
 		txtrThisShouldEqual.setText("This should equal a down payment on a car/house. It is common to have to make a down payment before purchasing.");
 		txtrThisShouldEqual.setLineWrap(true);
-		txtrThisShouldEqual.setBounds(263, 233, 166, 119);
+		txtrThisShouldEqual.setBounds(263, 233, 224, 119);
 		frmRegisterNewUser.getContentPane().add(txtrThisShouldEqual);
 		
 		JCheckBox bpCheckBox = new JCheckBox("Big Purchase");

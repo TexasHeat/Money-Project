@@ -17,7 +17,9 @@ public class Login {
 	private JTextField loginPasswordTextfield;
 	private Connection con;
 	
-	private String userLoginID = " ";
+	private static String userLoginID = " ";
+	private static double userMoneyGoal = 0;
+	private static double userMoneyTracker = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -58,8 +60,24 @@ public class Login {
 		userLoginID = uid;
 	}
 	
-	public String getUserID() {
+	public void setUserGoal(double umg) {
+		userMoneyGoal = umg;
+	}
+	
+	public void setUserTracker(double umt) {
+		userMoneyTracker = umt;
+	}
+	
+	public static String getUserID() {
 		return userLoginID;
+	}
+	
+	public static double getUserMoneyGoal() {
+		return userMoneyGoal;
+	}
+	
+	public static double getUserMoneyTracker() {
+		return userMoneyTracker;
 	}
 	
 	private void initialize() throws ClassNotFoundException {
@@ -73,7 +91,7 @@ public class Login {
 			e1.printStackTrace();
 		}
 		frame = new JFrame();
-		frame.setBounds(100, 100, 452, 500);
+		frame.setBounds(100, 100, 350, 200);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -116,6 +134,8 @@ public class Login {
 							String userName = rs.getString("userName");			// Username from database
 							String password = rs.getString("userPassword");		// Password from database
 							String userID = rs.getString("userID");				// userID from Database
+							double moneyGoal = rs.getDouble("userMoney");				// user money goal
+							double moneyTracker = rs.getDouble("userTracker");
 							
 							if(loginUserNameTextfield.getText().equals(userName) && loginPasswordTextfield.getText().equals(password)) {
 								System.out.println("Successful login");
@@ -126,6 +146,9 @@ public class Login {
 								
 								Login user1 = new Login();
 								user1.setUserID(userID);
+								user1.setUserGoal(moneyGoal);
+								user1.setUserTracker(moneyTracker);
+								
 								frame.dispose();
 								break;
 							}
@@ -133,13 +156,11 @@ public class Login {
 							else if (rs.next() == false) {
 								JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
 							}
-							
-							
+								
 							//System.out.println("Username from database: "+ userName);
 							//System.out.println("Password from database: "+ password);
 							
 						}
-						
 
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -154,7 +175,6 @@ public class Login {
 					System.out.println("Cannot have fields empty");
 				}
 			}
-			
 			
 		});
 		loginBtn.setBounds(171, 228, 98, 34);

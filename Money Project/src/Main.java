@@ -67,7 +67,6 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 		
 	
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.GREEN);
 		frame.getContentPane().setForeground(Color.WHITE);
 		frame.setBounds(100, 100, 350, 200);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
