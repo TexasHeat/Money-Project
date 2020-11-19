@@ -113,34 +113,6 @@ public class Profile {
 						
 					}
 				
-				
-					/*					
-					try {
-						Statement st = con.createStatement();
-						String que = "SELECT * FROM usermoney WHERE userID = '"+Login.getUserID()+"'";
-						ResultSet rs = st.executeQuery(que);
-						while(rs.next()) {
-							String userMoneyTracker = rs.getString("userTracker");
-														  
-						}
-					}
-					catch(Exception e2){
-						e2.printStackTrace();
-						
-					}
-				
-					try {
-						Statement st = con.createStatement();
-						String que = "UPDATE usermoney SET userTracker = '"+100+"' WHERE userID = '"+Login.getUserID()+"'";
-						st.executeUpdate(que);
-						
-
-					}
-					catch(Exception e1){
-						e1.printStackTrace();
-						
-					}
-					*/
 			}
 		});
 		saveDepositbtn.setBounds(128, 364, 89, 23);
@@ -154,29 +126,6 @@ public class Profile {
 		frame.getContentPane().add(progressBar);
 		progressBar.setValue(progress);
 		
-		
-		/*
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setForeground(Color.RED);
-		progressBar.setOrientation(SwingConstants.VERTICAL);
-		try {
-			Statement st = con.createStatement();
-			String que = "SELECT * FROM usermoney WHERE userID = '"+Login.getUserID()+"'";
-			ResultSet rs = st.executeQuery(que);
-			while(rs.next()) {
-				int progress = rs.getInt("userMoney");
-				//JProgressBar(0,progress);
-				progress = 0;
-				progressBar.setValue(progress);
-			}
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			
-		}
-		progressBar.setBounds(419, 270, 122, -241);
-		frame.getContentPane().add(progressBar);
-		*/
 		//Display user's info 
 		JTextArea fntextArea = new JTextArea();
 		try {

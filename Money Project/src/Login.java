@@ -7,12 +7,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 
 
 public class Login {
 
-	private JFrame frame;
+	private JFrame Login;
 	private JTextField loginUserNameTextfield;
 	private JTextField loginPasswordTextfield;
 	private Connection con;
@@ -28,22 +29,14 @@ public class Login {
 			public void run() {
 				try {
 					Login window = new Login();
-					window.frame.setVisible(true);
+					window.Login.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-	// Compare the users information to that of the database
 	
-	//String query = "SELECT * FROM employees WHERE userName LIKE '%"+ loginUserNameTextfield.getText() +"%";
-	
-//	public void checkLoginInfo() {
-//		if(loginUserNameTextfield.getText() != ) {
-//			
-//		}
-//	}
 	/**
 	 * Create the application.
 	 * @throws ClassNotFoundException 
@@ -90,19 +83,19 @@ public class Login {
 			System.out.println("Connection Failed");
 			e1.printStackTrace();
 		}
-		frame = new JFrame();
-		frame.setBounds(100, 100, 350, 200);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		Login = new JFrame();
+		Login.setBounds(100, 100, 350, 200);
+		Login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		Login.getContentPane().setLayout(null);
 
 		loginUserNameTextfield = new JTextField();
-		loginUserNameTextfield.setBounds(92, 105, 253, 29);
-		frame.getContentPane().add(loginUserNameTextfield);
+		loginUserNameTextfield.setBounds(10, 11, 205, 29);
+		Login.getContentPane().add(loginUserNameTextfield);
 		loginUserNameTextfield.setColumns(10);
 
 		loginPasswordTextfield = new JTextField();
-		loginPasswordTextfield.setBounds(92, 161, 253, 29);
-		frame.getContentPane().add(loginPasswordTextfield);
+		loginPasswordTextfield.setBounds(10, 51, 205, 29);
+		Login.getContentPane().add(loginPasswordTextfield);
 		loginPasswordTextfield.setColumns(10);
 		
 		
@@ -118,17 +111,8 @@ public class Login {
 					
 					try {
 						Statement st = con.createStatement();
-						//String userNameFromQuery = "SELECT * FROM moneyproject.usermoney WHERE userName = '"+loginUserNameTextfield.getText()+"' and userPassword = '"+loginPasswordTextfield.getText();
-						//String userPasswordFromQuery = "SELECT * FROM moneyproject.usermoney WHERE userPassword LIKE '%"+loginPasswordTextfield.getText()+"%'";
+						ResultSet rs = st.executeQuery("SELECT * FROM usermoney WHERE userName = '"+loginUserNameTextfield.getText()+"' AND userPassword = '"+loginPasswordTextfield.getText()+"' ");						
 						
-						ResultSet rs = st.executeQuery("select * from usermoney");
-						//rs.next();
-						
-						
-						/*
-						loginUserNameTextfield.getText(); // should be test
-						loginPasswordTextfield.getText(); // should be test
-						*/
 						while(rs.next()) {
 							
 							String userName = rs.getString("userName");			// Username from database
@@ -138,7 +122,7 @@ public class Login {
 							double moneyTracker = rs.getDouble("userTracker");
 							
 							if(loginUserNameTextfield.getText().equals(userName) && loginPasswordTextfield.getText().equals(password)) {
-								System.out.println("Successful login");
+
 								JOptionPane.showMessageDialog(null, "Successful login!");
 								
 								Profile user = new Profile();
@@ -149,7 +133,7 @@ public class Login {
 								user1.setUserGoal(moneyGoal);
 								user1.setUserTracker(moneyTracker);
 								
-								frame.dispose();
+								Login.dispose();
 								break;
 							}
 
@@ -177,8 +161,8 @@ public class Login {
 			}
 			
 		});
-		loginBtn.setBounds(171, 228, 98, 34);
-		frame.getContentPane().add(loginBtn);
+		loginBtn.setBounds(10, 91, 98, 34);
+		Login.getContentPane().add(loginBtn);
 
 
 
