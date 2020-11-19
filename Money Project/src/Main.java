@@ -12,7 +12,7 @@ import java.awt.Color;
 
 public class Main {
 
-	private JFrame frame;
+	JFrame frame;
 	private Connection con;
 
 	/**
@@ -86,6 +86,8 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				frame.dispose();
 			}
 		});
 		btnLogin.setBounds(38, 83, 114, 37);
@@ -105,6 +107,7 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 					e1.printStackTrace();
 				}
 				
+				frame.dispose();
 			}
 		});
 		btnRegister.setBounds(183, 83, 114, 37);

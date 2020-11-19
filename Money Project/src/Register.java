@@ -32,12 +32,11 @@ public class Register {
 	private JTextField passwordtextField;
 	private JTextField passwordtextField_2;
 	private JTextField monthlyExptextField;
-	private JTextField FrequencytextField;
 	private JTextField downPaymenttextField;
 	private Connection con;
 
-	private long userID;
-	private int userChoice = 0, userTracker = 0;
+	
+	private int userChoice = 0, userMoneyTracker = 0;
 	
 	
 	/**
@@ -80,9 +79,7 @@ public class Register {
 	}
 	
 	private void initialize() throws ClassNotFoundException {
-		
-		userID = rand();
-		
+				
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://34.72.116.206:3306/moneyproject", "newuser", "Rootpassword!");
@@ -139,57 +136,48 @@ public class Register {
 		JTextArea txtrWhyYouWant = new JTextArea();
 		txtrWhyYouWant.setText("Why you want to save and how often you want to save.");
 		txtrWhyYouWant.setLineWrap(true);
-		txtrWhyYouWant.setBounds(10, 115, 496, 29);
+		txtrWhyYouWant.setBounds(10, 142, 496, 29);
 		frmRegisterNewUser.getContentPane().add(txtrWhyYouWant);
 				
 		JTextArea txtrThisShouldBe = new JTextArea();
 		txtrThisShouldBe.setText("This should equal 3 months worth of your total spending. This is used in the case of an emergency or job loss.");
 		txtrThisShouldBe.setLineWrap(true);
-		txtrThisShouldBe.setBounds(10, 181, 166, 119);
+		txtrThisShouldBe.setBounds(10, 233, 166, 119);
 		frmRegisterNewUser.getContentPane().add(txtrThisShouldBe);
 			
 		JTextArea txtrThisShouldEqual = new JTextArea();
 		txtrThisShouldEqual.setText("This should equal a down payment on a car/house. It is common to have to make a down payment before purchasing.");
 		txtrThisShouldEqual.setLineWrap(true);
-		txtrThisShouldEqual.setBounds(263, 181, 166, 119);
+		txtrThisShouldEqual.setBounds(263, 233, 166, 119);
 		frmRegisterNewUser.getContentPane().add(txtrThisShouldEqual);
 		
 		JCheckBox bpCheckBox = new JCheckBox("Big Purchase");
-		bpCheckBox.setBounds(263, 151, 166, 23);
+		bpCheckBox.setBounds(263, 203, 166, 23);
 		frmRegisterNewUser.getContentPane().add(bpCheckBox);
 		
 		JCheckBox esCheckBox = new JCheckBox("Emergency Savings");
-		esCheckBox.setBounds(10, 151, 166, 23);
+		esCheckBox.setBounds(10, 203, 166, 23);
 		frmRegisterNewUser.getContentPane().add(esCheckBox);
 		
 		monthlyExptextField = new JTextField();
 		monthlyExptextField.setHorizontalAlignment(SwingConstants.CENTER);
-		monthlyExptextField.setBounds(10, 341, 166, 20);
+		monthlyExptextField.setBounds(10, 388, 166, 20);
 		frmRegisterNewUser.getContentPane().add(monthlyExptextField);
 		monthlyExptextField.setColumns(10);
 		
 		downPaymenttextField = new JTextField();
 		downPaymenttextField.setHorizontalAlignment(SwingConstants.CENTER);
 		downPaymenttextField.setColumns(10);
-		downPaymenttextField.setBounds(263, 341, 166, 20);
+		downPaymenttextField.setBounds(263, 388, 166, 20);
 		frmRegisterNewUser.getContentPane().add(downPaymenttextField);
 		
 		JLabel lblNewLabel_7 = new JLabel("Down Payment");
-		lblNewLabel_7.setBounds(263, 316, 86, 14);
+		lblNewLabel_7.setBounds(263, 363, 86, 14);
 		frmRegisterNewUser.getContentPane().add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_4 = new JLabel("Monthly Expenses");
-		lblNewLabel_4.setBounds(10, 316, 134, 14);
+		lblNewLabel_4.setBounds(10, 363, 134, 14);
 		frmRegisterNewUser.getContentPane().add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_6 = new JLabel("Number of Deposits");
-		lblNewLabel_6.setBounds(10, 384, 220, 14);
-		frmRegisterNewUser.getContentPane().add(lblNewLabel_6);
-		
-		FrequencytextField = new JTextField();
-		FrequencytextField.setBounds(10, 409, 166, 20);
-		frmRegisterNewUser.getContentPane().add(FrequencytextField);
-		FrequencytextField.setColumns(10);
 		
 		JTextArea txtrUserLogin = new JTextArea();
 		txtrUserLogin.setText("Why you want to save and how often you want to save.");
@@ -234,7 +222,7 @@ public class Register {
 						userChoice = 1;
 						try {
 							Statement st = con.createStatement();
-							String query = "INSERT INTO usermoney VALUES ('"+phonetextField.getText()+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+monthlyExptextField.getText()+"', '"+FrequencytextField.getText()+"')";
+							String query = "INSERT INTO usermoney VALUES ('"+phonetextField.getText()+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+monthlyExptextField.getText()+"', '"+userMoneyTracker+"')";
 							st.executeUpdate(query);
 													
 						} catch (SQLException e1) {
@@ -242,8 +230,19 @@ public class Register {
 							e1.printStackTrace();
 						}
 					}
-					Profile user = new Profile();
-					user.ExistingProfile();
+					
+					Main window;
+					try {
+						window = new Main();
+						window.frame.setVisible(true);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 				
 				// option 2 is "big purchases"
@@ -252,7 +251,7 @@ public class Register {
 						userChoice = 2;
 						try {
 							Statement st = con.createStatement();
-							String query = "INSERT INTO usermoney VALUES ('"+phonetextField.getText()+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+downPaymenttextField.getText()+"', '"+FrequencytextField.getText()+"')";
+							String query = "INSERT INTO usermoney VALUES ('"+phonetextField.getText()+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+downPaymenttextField.getText()+"', '"+userMoneyTracker+"')";
 							st.executeUpdate(query);
 													
 						} catch (SQLException e1) {
@@ -260,8 +259,21 @@ public class Register {
 							e1.printStackTrace();
 						}
 					}
-					Profile user = new Profile();
-					user.ExistingProfile();
+					
+					
+							Main window;
+							try {
+								window = new Main();
+								window.frame.setVisible(true);
+							} catch (ClassNotFoundException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+						
 				}
 				
 				else {

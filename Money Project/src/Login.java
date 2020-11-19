@@ -113,6 +113,7 @@ public class Login {
 								
 								Profile user = new Profile();
 								user.ExistingProfile();
+								frame.dispose();
 								break;
 							}
 
@@ -120,10 +121,6 @@ public class Login {
 								JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
 							}
 							
-							else {
-								System.out.println("Incorrect login info");
-								continue;
-							}
 							
 							//System.out.println("Username from database: "+ userName);
 							//System.out.println("Password from database: "+ password);
