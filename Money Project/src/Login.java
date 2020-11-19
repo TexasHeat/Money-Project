@@ -16,7 +16,8 @@ public class Login {
 	private JTextField loginUserNameTextfield;
 	private JTextField loginPasswordTextfield;
 	private Connection con;
-
+	
+	private String userLoginID = " ";
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +54,14 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 * @throws ClassNotFoundException 
 	 */
+	public void setUserID(String uid) {
+		userLoginID = uid;
+	}
+	
+	public String getUserID() {
+		return userLoginID;
+	}
+	
 	private void initialize() throws ClassNotFoundException {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -106,6 +115,7 @@ public class Login {
 							
 							String userName = rs.getString("userName");			// Username from database
 							String password = rs.getString("userPassword");		// Password from database
+							String userID = rs.getString("userID");				// userID from Database
 							
 							if(loginUserNameTextfield.getText().equals(userName) && loginPasswordTextfield.getText().equals(password)) {
 								System.out.println("Successful login");
@@ -113,6 +123,9 @@ public class Login {
 								
 								Profile user = new Profile();
 								user.ExistingProfile();
+								
+								Login user1 = new Login();
+								user1.setUserID(userID);
 								frame.dispose();
 								break;
 							}
@@ -129,6 +142,9 @@ public class Login {
 						
 
 					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
