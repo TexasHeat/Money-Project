@@ -21,7 +21,7 @@ public class Profile {
 	/**
 	 * Launch the application.
 	 */
-	public static void ExistingProfile() {
+	public void ExistingProfile() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

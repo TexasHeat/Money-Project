@@ -43,7 +43,7 @@ public class Register {
 	/**
 	 * Launch the application.
 	 */
-	public static void NewProfile() {
+	public void NewProfile() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -182,8 +182,8 @@ public class Register {
 		lblNewLabel_4.setBounds(10, 316, 134, 14);
 		frmRegisterNewUser.getContentPane().add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_6 = new JLabel("Number of Deposit");
-		lblNewLabel_6.setBounds(10, 384, 152, 14);
+		JLabel lblNewLabel_6 = new JLabel("Number of Deposits");
+		lblNewLabel_6.setBounds(10, 384, 220, 14);
 		frmRegisterNewUser.getContentPane().add(lblNewLabel_6);
 		
 		FrequencytextField = new JTextField();
@@ -227,12 +227,14 @@ public class Register {
 		JButton saveUserButton = new JButton("Save");
 		saveUserButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				// option 1 is "emergency savings"
 				if(esCheckBox.isSelected() && !bpCheckBox.isSelected()) {
 					if(!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")&& !monthlyExptextField.getText().equals("")) {
 						userChoice = 1;
 						try {
 							Statement st = con.createStatement();
-							String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+monthlyExptextField.getText()+"', '"+FrequencytextField.getText()+"')";
+							String query = "INSERT INTO usermoney VALUES ('"+phonetextField.getText()+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+monthlyExptextField.getText()+"', '"+FrequencytextField.getText()+"')";
 							st.executeUpdate(query);
 													
 						} catch (SQLException e1) {
@@ -240,15 +242,17 @@ public class Register {
 							e1.printStackTrace();
 						}
 					}
+					Profile user = new Profile();
+					user.ExistingProfile();
 				}
 				
-				
+				// option 2 is "big purchases"
 				else if(bpCheckBox.isSelected() && !esCheckBox.isSelected()) {
 					if (!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")&& !downPaymenttextField.getText().equals("")) {
 						userChoice = 2;
 						try {
 							Statement st = con.createStatement();
-							String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+downPaymenttextField.getText()+"', '"+FrequencytextField.getText()+"')";
+							String query = "INSERT INTO usermoney VALUES ('"+phonetextField.getText()+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+downPaymenttextField.getText()+"', '"+FrequencytextField.getText()+"')";
 							st.executeUpdate(query);
 													
 						} catch (SQLException e1) {
@@ -256,6 +260,8 @@ public class Register {
 							e1.printStackTrace();
 						}
 					}
+					Profile user = new Profile();
+					user.ExistingProfile();
 				}
 				
 				else {
@@ -263,9 +269,12 @@ public class Register {
 						    "Please Select Monthly Expenses or Big Purchases (Not Both!)");
 				}
 					
-				
+				frmRegisterNewUser.dispose();
 			}
 		});
+		
+		
+		
 		saveUserButton.setBounds(10, 600, 89, 23);
 		frmRegisterNewUser.getContentPane().add(saveUserButton);		
 				
