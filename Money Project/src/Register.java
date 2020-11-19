@@ -182,7 +182,7 @@ public class Register {
 		lblNewLabel_4.setBounds(10, 316, 134, 14);
 		frmRegisterNewUser.getContentPane().add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_6 = new JLabel("Frequency (weekly, monthly)");
+		JLabel lblNewLabel_6 = new JLabel("Number of Deposit");
 		lblNewLabel_6.setBounds(10, 384, 152, 14);
 		frmRegisterNewUser.getContentPane().add(lblNewLabel_6);
 		
@@ -229,9 +229,10 @@ public class Register {
 			public void actionPerformed(ActionEvent e) {
 				if(esCheckBox.isSelected() && !bpCheckBox.isSelected()) {
 					if(!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")&& !monthlyExptextField.getText().equals("")) {
+						userChoice = 1;
 						try {
 							Statement st = con.createStatement();
-							String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+monthlyExptextField.getText()+"', '"+userTracker+"')";
+							String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+monthlyExptextField.getText()+"', '"+FrequencytextField.getText()+"')";
 							st.executeUpdate(query);
 													
 						} catch (SQLException e1) {
@@ -244,9 +245,10 @@ public class Register {
 				
 				else if(bpCheckBox.isSelected() && !esCheckBox.isSelected()) {
 					if (!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")&& !downPaymenttextField.getText().equals("")) {
+						userChoice = 2;
 						try {
 							Statement st = con.createStatement();
-							String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+downPaymenttextField.getText()+"', '"+userTracker+"')";
+							String query = "INSERT INTO usermoney VALUES ('"+userID+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+downPaymenttextField.getText()+"', '"+FrequencytextField.getText()+"')";
 							st.executeUpdate(query);
 													
 						} catch (SQLException e1) {
