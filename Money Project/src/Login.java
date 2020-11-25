@@ -21,6 +21,7 @@ public class Login {
 	private static String userLoginID = " ";
 	private static double userMoneyGoal = 0;
 	private static double userMoneyTracker = 0;
+	private static int userChoice = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -61,6 +62,10 @@ public class Login {
 		userMoneyTracker = umt;
 	}
 	
+	public void setChoice(int uc) {
+		userChoice = uc;
+	}
+	
 	public static String getUserID() {
 		return userLoginID;
 	}
@@ -71,6 +76,10 @@ public class Login {
 	
 	public static double getUserMoneyTracker() {
 		return userMoneyTracker;
+	}
+	
+	public static int getChoice() {
+		return userChoice;
 	}
 	
 	private void initialize() throws ClassNotFoundException {
@@ -118,8 +127,9 @@ public class Login {
 							String userName = rs.getString("userName");			// Username from database
 							String password = rs.getString("userPassword");		// Password from database
 							String userID = rs.getString("userID");				// userID from Database
-							double moneyGoal = rs.getDouble("userMoney");				// user money goal
-							double moneyTracker = rs.getDouble("userTracker");
+							double moneyGoal = rs.getDouble("userMoney");		// user money goal
+							double moneyTracker = rs.getDouble("userTracker"); 	// 
+							int userSavingsChoice = rs.getInt("userChoice");	// user savings choice from DataBase
 							
 							if(loginUserNameTextfield.getText().equals(userName) && loginPasswordTextfield.getText().equals(password)) {
 
@@ -132,6 +142,7 @@ public class Login {
 								user1.setUserID(userID);
 								user1.setUserGoal(moneyGoal);
 								user1.setUserTracker(moneyTracker);
+								user1.setChoice(userSavingsChoice);
 								
 								Login.dispose();
 								break;
@@ -140,10 +151,7 @@ public class Login {
 							else if (rs.next() == false) {
 								JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
 							}
-								
-							//System.out.println("Username from database: "+ userName);
-							//System.out.println("Password from database: "+ password);
-							
+														
 						}
 
 					} catch (SQLException e1) {

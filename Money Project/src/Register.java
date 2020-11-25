@@ -140,7 +140,7 @@ public class Register {
 		frmRegisterNewUser.getContentPane().add(txtrWhyYouWant);
 				
 		JTextArea txtrThisShouldBe = new JTextArea();
-		txtrThisShouldBe.setText("This should equal 3 months worth of your total spending. This is used in the case of an emergency or job loss.");
+		txtrThisShouldBe.setText("Enter your Monthly spending. The goal will equal that total x3 which is used in the case of an emergency or loss of employement.");
 		txtrThisShouldBe.setLineWrap(true);
 		txtrThisShouldBe.setBounds(10, 233, 224, 119);
 		frmRegisterNewUser.getContentPane().add(txtrThisShouldBe);
@@ -218,11 +218,15 @@ public class Register {
 				
 				// option 1 is "emergency savings"
 				if(esCheckBox.isSelected() && !bpCheckBox.isSelected()) {
+									
 					if(!usernametextField.getText().equals("") && !passwordtextField.getText().equals("") && !lntextField.getText().equals("") && !fntextField.getText().equals("")&& !monthlyExptextField.getText().equals("")) {
 						userChoice = 1;
 						try {
+							double money = Double.parseDouble(monthlyExptextField.getText());
+							money = money*3;
+							
 							Statement st = con.createStatement();
-							String query = "INSERT INTO usermoney VALUES ('"+phonetextField.getText()+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+monthlyExptextField.getText()+"', '"+userMoneyTracker+"')";
+							String query = "INSERT INTO usermoney VALUES ('"+phonetextField.getText()+"', '"+usernametextField.getText()+"', '"+passwordtextField.getText()+"', '"+lntextField.getText()+"', '"+fntextField.getText()+"', '"+userChoice+"', '"+money+"', '"+userMoneyTracker+"')";
 							st.executeUpdate(query);
 													
 						} catch (SQLException e1) {

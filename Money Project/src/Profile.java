@@ -173,21 +173,44 @@ public class Profile {
 		phtextArea.setBounds(100, 138, 117, 22);
 		frame.getContentPane().add(phtextArea);
 		
-		JTextArea gotextArea = new JTextArea();
-		try {
-			Statement st = con.createStatement();
-			String que = "SELECT * FROM usermoney WHERE userID = '"+Login.getUserID()+"'";
-			ResultSet rs = st.executeQuery(que);
-			while(rs.next()) {
-				gotextArea.setText(rs.getString("userMoney"));
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		gotextArea.setBounds(100, 182, 117, 22);
-		frame.getContentPane().add(gotextArea);
+		int choice = Login.getChoice();
 		
+		
+		if (choice == 1) {
+			
+			JTextArea gotextArea = new JTextArea();
+			try {
+				Statement st = con.createStatement();
+				String que = "SELECT * FROM usermoney WHERE userID = '"+Login.getUserID()+"'";
+				ResultSet rs = st.executeQuery(que);
+				while(rs.next()) {
+					gotextArea.setText(rs.getString("userMoney"));
+				}
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			gotextArea.setBounds(100, 182, 117, 22);
+			frame.getContentPane().add(gotextArea);		
+		}
+		
+		else if (choice == 2) {
+			JTextArea gotextArea = new JTextArea();
+			try {
+				Statement st = con.createStatement();
+				String que = "SELECT * FROM usermoney WHERE userID = '"+Login.getUserID()+"'";
+				ResultSet rs = st.executeQuery(que);
+				while(rs.next()) {
+					gotextArea.setText(rs.getString("userMoney"));
+				}
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			gotextArea.setBounds(100, 182, 117, 22);
+			frame.getContentPane().add(gotextArea);
+		}
+				
 		JTextArea moneyTrackertextArea = new JTextArea();
 		try {
 			Statement st = con.createStatement();
@@ -246,10 +269,5 @@ public class Profile {
 		savedMoneyLabel.setBounds(10, 231, 46, 14);
 		frame.getContentPane().add(savedMoneyLabel);
 				
-	}
-
-	private void JProgressBar(int i, int progress) {
-		// TODO Auto-generated method stub
-		
 	}
 }
