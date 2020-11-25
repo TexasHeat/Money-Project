@@ -30,7 +30,7 @@ public class Main {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 * @throws SQLException 
@@ -65,7 +65,6 @@ private void initialize() throws SQLException, ClassNotFoundException  {
 			e1.printStackTrace();
 		}
 		
-	
 		frame = new JFrame();
 		frame.getContentPane().setForeground(Color.WHITE);
 		frame.setBounds(100, 100, 350, 200);

@@ -50,6 +50,8 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 * @throws ClassNotFoundException 
 	 */
+	
+	//Created get/set methods for user decision making.
 	public void setUserID(String uid) {
 		userLoginID = uid;
 	}
